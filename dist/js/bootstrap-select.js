@@ -141,7 +141,7 @@
       // initialize object and result
       r=[];
       // iterate over object keys
-      for (k in o) 
+      for (k in o)
           // fill result array with non-prototypical keys
         r.hasOwnProperty.call(o, k) && r.push(k);
       // return result
@@ -379,15 +379,15 @@
       this.$newElement.on('hide.bs.dropdown', function (e) {
         that.$element.trigger('hide.bs.select', e);
       });
-      
+
       this.$newElement.on('hidden.bs.dropdown', function (e) {
         that.$element.trigger('hidden.bs.select', e);
       });
-      
+
       this.$newElement.on('show.bs.dropdown', function (e) {
         that.$element.trigger('show.bs.select', e);
       });
-      
+
       this.$newElement.on('shown.bs.dropdown', function (e) {
         that.$element.trigger('shown.bs.select', e);
       });
@@ -569,7 +569,7 @@
             var label = this.parentElement.label,
                 labelSubtext = typeof $this.parent().data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.parent().data('subtext') + '</small>' : '',
                 labelIcon = $this.parent().data('icon') ? '<span class="' + that.options.iconBase + ' ' + $this.parent().data('icon') + '"></span> ' : '';
-            
+
             label = labelIcon + '<span class="text">' + label + labelSubtext + '</span>';
 
             if (index !== 0 && _li.length > 0) { // Is it NOT the first option of the select && are there elements in the dropdown?
@@ -761,8 +761,8 @@
                         parseInt(menuStyle ? menuStyle.paddingBottom : $menu.css('paddingBottom')) +
                         parseInt(menuStyle ? menuStyle.borderTopWidth : $menu.css('borderTopWidth')) +
                         parseInt(menuStyle ? menuStyle.borderBottomWidth : $menu.css('borderBottomWidth')),
-          menuExtras =  menuPadding + 
-                        parseInt(menuStyle ? menuStyle.marginTop : $menu.css('marginTop')) + 
+          menuExtras =  menuPadding +
+                        parseInt(menuStyle ? menuStyle.marginTop : $menu.css('marginTop')) +
                         parseInt(menuStyle ? menuStyle.marginBottom : $menu.css('marginBottom')) + 2;
 
       document.body.removeChild(newElement);
@@ -1027,7 +1027,7 @@
       });
 
       $document.data('spaceSelect', false);
-      
+
       this.$button.on('keyup', function (e) {
         if (/(32)/.test(e.keyCode.toString(10)) && $document.data('spaceSelect')) {
             e.preventDefault();
@@ -1044,7 +1044,7 @@
             var selectedIndex = that.liObj[that.$element[0].selectedIndex];
 
             if (typeof selectedIndex !== 'number' || that.options.size === false) return;
-            
+
             // scroll to selected option
             var offset = that.$lis.eq(selectedIndex)[0].offsetTop - that.$menuInner[0].offsetTop;
             offset = offset - that.$menuInner[0].offsetHeight/2 + that.sizeInfo.liHeight/2;
@@ -1490,7 +1490,9 @@
         $items.each(function () {
           if (!$(this).parent().hasClass('disabled')) {
             if ($.trim($(this).text().toLowerCase()).substring(0, 1) == keyCodeMap[e.keyCode]) {
-              keyIndex.push($(this).parent().index());
+              var li = $(this).parent();
+              var index = li.attr('data-original-index') ? li.attr('data-original-index') : li.index();
+              keyIndex.push(index);
             }
           }
         });
