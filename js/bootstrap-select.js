@@ -1466,7 +1466,9 @@
 
         $items.each(function () {
           if (!$(this).parent().hasClass('disabled')) {
-            if ($.trim($(this).text().toLowerCase()).substring(0, 1) == keyCodeMap[e.keyCode]) {
+            var word = $.trim($(this).children('a').text());
+            var firstLetter = word.toLowerCase().substring(0, 1);
+            if (word !== 'CHOOSE YOUR DESTINATION' && firstLetter == keyCodeMap[e.keyCode]) {
               keyIndex.push($(this).parent().index());
             }
           }
