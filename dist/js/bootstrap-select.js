@@ -1,7 +1,7 @@
 /*!
  * Bootstrap-select v1.7.3 (http://silviomoreto.github.io/bootstrap-select)
  *
- * Copyright 2013-2015 bootstrap-select
+ * Copyright 2013-2016 bootstrap-select
  * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
  */
 
@@ -1489,7 +1489,8 @@
 
         $items.each(function () {
           if (!$(this).parent().hasClass('disabled')) {
-            if ($.trim($(this).text().toLowerCase()).substring(0, 1) == keyCodeMap[e.keyCode]) {
+            var item = $.trim($(this).text().toLowerCase());
+            if (item !== 'choose your destination' && item.substring(0, 1) == keyCodeMap[e.keyCode]) {
               var li = $(this).parent();
               var index = li.attr('data-original-index') ? li.attr('data-original-index') : li.index();
               keyIndex.push(index);
